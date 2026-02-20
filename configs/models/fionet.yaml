@@ -1,0 +1,26 @@
+model:
+  _target_: flowers.models.fionet.FIONet
+  # dim_in and dim_out will be set automatically based on dataset metadata
+  # spatial_resolution will be set automatically based on dataset metadata
+  # n_spatial_dims will be set automatically based on dataset metadata
+  lifting_dim: 160
+  n_levels: 4
+  use_meta_conditioning: true
+  num_heads: 40
+  groups: 40
+  dropout_rate: 0.0
+
+# Batch size mapping based on resolution
+# Format: "HxW" or "DxHxW" -> batch_size
+# Adjust based on available GPU memory
+batch_size_map:
+  # 2D resolutions
+  "128x128": 512
+  "128x384": 150 # turbulent_radiative_layer_2D
+  "256x256": 110 # 144
+  "512x128": 100
+  "512x512": 32
+  "1024x256": 32
+
+  # 3D
+  "64x64x64": 32

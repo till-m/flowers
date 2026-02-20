@@ -1,0 +1,67 @@
+model:
+  _target_: flowers.models.scOT.ScOT
+  # dim_in will be set automatically based on dataset metadata
+  # dim_out will be set automatically based on dataset metadata
+  # spatial_resolution will be set automatically based on dataset metadata
+  # n_spatial_dims will be set automatically based on dataset metadata
+
+  # configured to lie between 15 and 20mio parameters
+  # by scaling embed_dim
+  patch_size: 4
+  embed_dim: 32
+  depths: [8, 8, 8, 8]
+  num_heads: [2, 4, 8, 16]
+  skip_connections: [1, 1, 1]  # Number of residual blocks per stage
+  window_size: 7
+  mlp_ratio: 4.0
+  qkv_bias: true
+  hidden_dropout_prob: 0.0
+  attention_probs_dropout_prob: 0.0
+  drop_path_rate: 0.1
+  hidden_act: "gelu"
+  use_absolute_embeddings: false
+  layer_norm_eps: 1e-5
+  residual_model: "convnext"  # "convnext" or "resnet"
+  dim_meta: 0
+  learn_residual: false
+  use_mask_token: false
+
+# Optimizer configuration
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 0.0005
+  weight_decay: 1.0e-6
+
+# Learning rate scheduler
+lr_scheduler:
+  _target_: the_well.benchmark.optim.schedulers.LinearWarmupCosineAnnealingLR
+  warmup_epochs: 5  # 5 epochs of warmup
+  # optimizer will be passed automatically by train script
+  # max_epochs will be passed automatically by train script
+  # warmup_start_lr and eta_min will be set to optimizer.lr * 0.1 by train script
+
+# Batch size mapping based on dataset name
+# Adjust based on available GPU memory
+batch_size_map:
+  # 2D datasets
+  "acoustic_scattering_maze": 200  # 256x256
+  "acoustic_scattering_discontinuous": 200  # 256x256
+  "acoustic_scattering_inclusions": 200  # 256x256
+  "active_matter": 200  # 256x256
+  "euler_multi_quadrants_periodic": 70  # 512x512
+  "gray_scott_reaction_diffusion": 512  # 128x128
+  "helmholtz_staircase": 60  # 1024x256
+  "pdebench-2D_DarcyFlow": 512  # 128x128
+  "pdebench-diffusion_reaction": 512  # 128x128
+  "pdebench-shallow_water": 512  # 128x128
+  "planetswe": 110  # 256x512
+  "rayleigh_benard": 220  # 512x128 (checked)
+  "rayleigh_benard_uniform": 220  # 512x128
+  "shear_flow": 110  # 256x512
+  "turbulent_radiative_layer_2D": 310  # 128x384 (checked)
+  "viscoelastic_instability": 70  # 512x512 (checked)
+  "viscoelastic_instability_fixed": 70  # 512x512 (duplicates removed)
+  "wavebench-helmholtz_anisotropic": 512   # 128x128
+
+  # 3D datasets
+  # not supported

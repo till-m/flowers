@@ -1,0 +1,75 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: shear_flow
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "Reynolds"
+      normalization: "log"
+    - name: "Schmidt"
+      normalization: "log"
+
+  stats:
+    tracer:
+      mean: 2.3845E-03
+      std: 3.5828E-01
+      rms: 3.5829E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: -2.2658E-10
+      std_delta: 6.9232E-02
+      rms_delta: 6.9232E-02
+    pressure:
+      mean: -1.2396E-09
+      std: 8.2049E-02
+      rms: 8.2049E-02
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: -3.0737E-12
+      std_delta: 4.5268E-03
+      rms_delta: 4.5268E-03
+    velocity:
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std:
+      - 4.0194E-01
+      - 1.0421E-01
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      rms:
+      - 4.0195E-01
+      - 1.0421E-01
+      rms_delta:
+      - 8.8580E-03
+      - 9.2221E-03
+      mean:
+      - 2.3843E-03
+      - -1.7308E-07
+      std_delta:
+      - 8.8580E-03
+      - 9.2221E-03
+      mean_delta:
+      - -1.7552E-10
+      - 1.5745E-13
+    Reynolds:
+      mean: 1.6500E+05
+      std: 1.9602E+05
+      rms: 2.5622E+05
+      log_mean: 1.1166E+01
+      log_std: 1.4047E+00
+    Schmidt:
+      mean: 2.6857E+00
+      std: 3.3766E+00
+      rms: 4.3144E+00
+      log_mean: 2.0817E-17
+      log_std: 1.5467E+00

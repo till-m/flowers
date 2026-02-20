@@ -1,0 +1,130 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: viscoelastic_instability
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars: [] # no meta scalars (parameters don't change between simulations)
+
+  stats:
+    pressure:
+      mean: -5.1974E-05
+      std: 6.7898E-03
+      rms: 6.7901E-03
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: -3.1086E-07
+      std_delta: 9.1305E-03
+      rms_delta: 9.1305E-03
+    c_zz:
+      mean: 5.5936E-01
+      std: 2.1646E-01
+      rms: 5.9978E-01
+      log_mean: -6.5897E-01
+      log_std: 4.0403E-01
+      mean_delta: 8.4879E-05
+      std_delta: 1.3743E-01
+      rms_delta: 1.3743E-01
+    velocity:
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      rms:
+      - 1.0793E+00
+      - 1.0613E-02
+      std_delta:
+      - 3.1729E-02
+      - 1.5659E-02
+      mean:
+      - 9.9758E-01
+      - -2.0372E-08
+      std:
+      - 4.1080E-01
+      - 1.0613E-02
+      mean_delta:
+      - -3.9812E-11
+      - -4.0373E-09
+      rms_delta:
+      - 3.1729E-02
+      - 1.5659E-02
+    C:
+      log_mean:
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      log_std:
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      rms:
+      - - 2.2998E+03
+        - 1.4867E+02
+      - - 1.4867E+02
+        - 3.4585E+01
+      std_delta:
+      - - 1.2188E+03
+        - 2.1083E+02
+      - - 2.1083E+02
+        - 4.2839E+01
+      mean:
+      - - 1.9611E+03
+        - -2.7848E-01
+      - - -2.7848E-01
+        - 9.8888E+00
+      std:
+      - - 1.2013E+03
+        - 1.4867E+02
+      - - 1.4867E+02
+        - 3.3141E+01
+      mean_delta:
+      - - -7.9413E-01
+        - -1.0014E-02
+      - - -1.0014E-02
+        - 2.3664E-02
+      rms_delta:
+      - - 1.2188E+03
+        - 2.1083E+02
+      - - 2.1083E+02
+        - 4.2838E+01
+    Re:
+      mean: 1.0000E+03
+      std: 0.0000E+00
+      rms: 1.0000E+03
+      log_mean: 6.9078E+00
+      log_std: 0.0000E+00
+    Wi:
+      mean: 5.0000E+01
+      std: 0.0000E+00
+      rms: 5.0000E+01
+      log_mean: 3.9120E+00
+      log_std: 0.0000E+00
+    beta:
+      mean: 9.0000E-01
+      std: 0.0000E+00
+      rms: 9.0000E-01
+      log_mean: -1.0536E-01
+      log_std: 0.0000E+00
+    epsilon:
+      mean: 2.0000E-06
+      std: 0.0000E+00
+      rms: 2.0000E-06
+      log_mean: -1.3122E+01
+      log_std: 0.0000E+00
+    Lmax:
+      mean: 7.0000E+01
+      std: 0.0000E+00
+      rms: 7.0000E+01
+      log_mean: 4.2485E+00
+      log_std: 0.0000E+00

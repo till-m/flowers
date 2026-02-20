@@ -1,0 +1,154 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: active_matter
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "zeta"
+      normalization: "linear"
+    - name: "alpha"
+      normalization: "linear"
+
+  stats:
+    concentration:
+      mean: 1.0000E+00
+      std: 2.9522E-03
+      rms: 1.0000E+00
+      log_mean: -4.3578E-06
+      log_std: 2.9521E-03
+      mean_delta: 1.0401E-12
+      std_delta: 8.2254E-04
+      rms_delta: 8.2254E-04
+    velocity:
+      mean:
+      - -4.2364E-12
+      - -7.8842E-12
+      rms:
+      - 5.7718E-01
+      - 5.6706E-01
+      std:
+      - 5.7718E-01
+      - 5.6706E-01
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      mean_delta:
+      - -8.4414E-13
+      - -2.3416E-11
+      std_delta:
+      - 1.9117E-01
+      - 1.9125E-01
+      rms_delta:
+      - 1.9117E-01
+      - 1.9125E-01
+    D:
+      mean:
+      - - 5.0184E-01
+        - -6.2220E-03
+      - - -6.2220E-03
+        - 4.9816E-01
+      rms:
+      - - 5.9525E-01
+        - 3.3111E-01
+      - - 3.3111E-01
+        - 5.9218E-01
+      std:
+      - - 3.2013E-01
+        - 3.3105E-01
+      - - 3.3105E-01
+        - 3.2018E-01
+      log_std:
+      - - 1.1963E+00
+        - !!float 'NAN'
+      - - !!float 'NAN'
+        - 1.2079E+00
+      log_mean:
+      - - -1.1125E+00
+        - !!float 'NAN'
+      - - !!float 'NAN'
+        - -1.1275E+00
+      mean_delta:
+      - - -3.8141E-05
+        - -5.1451E-05
+      - - -5.1451E-05
+        - 3.8142E-05
+      std_delta:
+      - - 1.4943E-01
+        - 1.4891E-01
+      - - 1.4891E-01
+        - 1.4944E-01
+      rms_delta:
+      - - 1.4943E-01
+        - 1.4891E-01
+      - - 1.4891E-01
+        - 1.4944E-01
+    E:
+      mean:
+      - - 1.0094E-12
+        - 2.3390E-11
+      - - 2.3390E-11
+        - -1.0094E-12
+      rms:
+      - - 4.0729E-01
+        - 4.3216E-01
+      - - 4.3216E-01
+        - 4.0729E-01
+      std:
+      - - 4.0729E-01
+        - 4.3216E-01
+      - - 4.3216E-01
+        - 4.0729E-01
+      log_std:
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      log_mean:
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      - - !!float 'NAN'
+        - !!float 'NAN'
+      mean_delta:
+      - - 8.3277E-13
+        - -9.0638E-12
+      - - -9.0638E-12
+        - -8.3277E-13
+      std_delta:
+      - - 2.4759E-01
+        - 2.5014E-01
+      - - 2.5014E-01
+        - 2.4759E-01
+      rms_delta:
+      - - 2.4759E-01
+        - 2.5014E-01
+      - - 2.5014E-01
+        - 2.4759E-01
+    L:
+      mean: 1.0000E+01
+      std: 0.0000E+00
+      rms: 1.0000E+01
+      log_mean: 2.3026E+00
+      log_std: 2.3842E-07
+    zeta:
+      mean: 9.0000E+00
+      std: 5.1640E+00
+      rms: 1.0376E+01
+      log_mean: 1.9284E+00
+      log_std: 8.5854E-01
+    alpha:
+      mean: -3.0000E+00
+      std: 1.4142E+00
+      rms: 3.3166E+00
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'

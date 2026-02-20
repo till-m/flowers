@@ -1,0 +1,50 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: gray_scott_reaction_diffusion
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "F"
+      normalization: "log"
+    - name: "k"
+      normalization: "log"
+
+  stats:
+    A:
+      mean: 7.2941E-01
+      std: 2.3984E-01
+      rms: 7.6766E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: -2.0051E-04
+      std_delta: 1.8488E-02
+      rms_delta: 1.8490E-02
+    B:
+      mean: 9.6613E-02
+      std: 1.2367E-01
+      rms: 1.5690E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: 3.1898E-05
+      std_delta: 1.1279E-02
+      rms_delta: 1.1279E-02
+    F:
+      mean: 4.1167E-02
+      std: 2.9043E-02
+      rms: 5.0380E-02
+      log_mean: -3.4172E+00
+      log_std: 6.6219E-01
+    k:
+      mean: 5.7667E-02
+      std: 4.6786E-03
+      rms: 5.7856E-02
+      log_mean: -2.8563E+00
+      log_std: 8.0824E-02

@@ -1,0 +1,75 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: rayleigh_benard
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "Rayleigh"
+      normalization: "log"
+    - name: "Prandtl"
+      normalization: "log"
+
+  stats:
+    buoyancy:
+      mean: 3.7085E-01
+      std: 2.4928E-01
+      rms: 4.4684E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: 5.2857E-04
+      std_delta: 5.1371E-02
+      rms_delta: 5.1374E-02
+    pressure:
+      mean: 7.8415E-03
+      std: 1.4932E-01
+      rms: 1.4953E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: 1.0872E-04
+      std_delta: 2.6063E-02
+      rms_delta: 2.6063E-02
+    velocity:
+      rms:
+      - 2.0773E-01
+      - 1.7953E-01
+      mean:
+      - 2.1672E-05
+      - 2.8189E-12
+      std_delta:
+      - 6.5650E-02
+      - 5.8977E-02
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      mean_delta:
+      - -4.2876E-07
+      - 5.8319E-13
+      std:
+      - 2.0773E-01
+      - 1.7953E-01
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      rms_delta:
+      - 6.5650E-02
+      - 5.8977E-02
+    Rayleigh:
+      mean: 2.2222E+09
+      std: 3.9069E+09
+      rms: 4.4947E+09
+      log_mean: 1.8421E+01
+      log_std: 3.2563E+00
+    Prandtl:
+      mean: 2.6857E+00
+      std: 3.3766E+00
+      rms: 4.3144E+00
+      log_mean: 1.3878E-17
+      log_std: 1.5467E+00

@@ -1,0 +1,107 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: MHD_256
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "Ma"
+      normalization: "linear"
+    - name: "Ms"
+      normalization: "log"
+
+  stats:
+    density:
+      mean: 1.0015E+00
+      std: 9.2836E-01
+      rms: 1.3657E+00
+      log_mean: -2.4423E-01
+      log_std: 7.3159E-01
+      mean_delta: 1.9140E-06
+      std_delta: 6.5491E-01
+      rms_delta: 6.5491E-01
+    magnetic_field:
+      std_delta:
+      - 1.4984E-01
+      - 1.5669E-01
+      - 1.5674E-01
+      rms_delta:
+      - 1.4984E-01
+      - 1.5669E-01
+      - 1.5674E-01
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std:
+      - 5.2968E-01
+      - 3.1905E-01
+      - 3.2211E-01
+      mean:
+      - 5.3323E-01
+      - 8.4268E-10
+      - 2.0005E-08
+      mean_delta:
+      - 9.9545E-07
+      - -2.1999E-11
+      - 1.8223E-11
+      rms:
+      - 7.5165E-01
+      - 3.1905E-01
+      - 3.2211E-01
+    velocity:
+      std_delta:
+      - 1.4705E-01
+      - 1.4556E-01
+      - 1.4602E-01
+      rms_delta:
+      - 1.4705E-01
+      - 1.4556E-01
+      - 1.4602E-01
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std:
+      - 4.8568E-01
+      - 4.3868E-01
+      - 4.7909E-01
+      mean:
+      - 9.6158E-03
+      - 6.7833E-02
+      - 1.9316E-02
+      mean_delta:
+      - 5.5439E-05
+      - 1.6727E-04
+      - 6.9469E-06
+      rms:
+      - 4.8578E-01
+      - 4.4389E-01
+      - 4.7948E-01
+    Ma:
+      mean: 1.3500E+00
+      std: 6.5000E-01
+      rms: 1.4983E+00
+      log_mean: 1.6824E-01
+      log_std: 5.2491E-01
+    Ms:
+      mean: 2.3400E+00
+      std: 2.3922E+00
+      rms: 3.3463E+00
+      log_mean: 3.9894E-01
+      log_std: 9.2123E-01

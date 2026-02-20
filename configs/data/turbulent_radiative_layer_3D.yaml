@@ -1,0 +1,75 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: turbulent_radiative_layer_3D
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "tcool"
+      normalization: "log"
+
+  stats:
+    density:
+      mean: 5.1729E+01
+      std: 4.8519E+01
+      rms: 7.0925E+01
+      log_mean: 2.4591E+00
+      log_std: 2.2415E+00
+      mean_delta: 2.2292E-02
+      std_delta: 1.3795E+01
+      rms_delta: 1.3795E+01
+    pressure:
+      mean: 9.9990E-01
+      std: 6.0186E-03
+      rms: 9.9980E-01
+      log_mean: -3.7058E-04
+      log_std: 6.1208E-03
+      mean_delta: -6.4838E-06
+      std_delta: 7.2664E-03
+      rms_delta: 7.2664E-03
+    velocity:
+      std:
+      - 3.7847E-02
+      - 6.4501E-03
+      - 2.3157E-02
+      rms:
+      - 3.8042E-02
+      - 6.4501E-03
+      - 2.7871E-02
+      std_delta:
+      - 7.5060E-03
+      - 6.6136E-03
+      - 9.6832E-03
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      rms_delta:
+      - 7.5060E-03
+      - 6.6136E-03
+      - 9.6848E-03
+      mean_delta:
+      - -3.2340E-05
+      - 2.4483E-08
+      - -1.7244E-04
+      mean:
+      - -3.8526E-03
+      - -9.6489E-06
+      - -1.5510E-02
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+    tcool:
+      mean: 7.9889E-01
+      std: 9.9291E-01
+      rms: 1.2744E+00
+      log_mean: -1.1477E+00
+      log_std: 1.4866E+00

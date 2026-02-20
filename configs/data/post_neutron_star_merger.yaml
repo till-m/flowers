@@ -1,0 +1,136 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: post_neutron_star_merger
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars: []
+
+  stats:
+    density:
+      mean: 1.8164E-02
+      std: 7.1958E-02
+      rms: 7.4215E-02
+      log_mean: -1.2839E+01
+      log_std: 6.2659E+00
+      mean_delta: -1.1779E-04
+      std_delta: 2.2821E-02
+      rms_delta: 2.2821E-02
+    internal_energy:
+      mean: 3.7828E-04
+      std: 1.5727E-03
+      rms: 1.6175E-03
+      log_mean: -1.6693E+01
+      log_std: 6.2560E+00
+      mean_delta: -1.8190E-06
+      std_delta: 7.3243E-04
+      rms_delta: 7.3243E-04
+    pressure:
+      mean: 9.7211E-05
+      std: 4.4758E-04
+      rms: 4.5802E-04
+      log_mean: -1.8155E+01
+      log_std: 6.2470E+00
+      mean_delta: -4.0470E-07
+      std_delta: 2.4223E-04
+      rms_delta: 2.4223E-04
+    temperature:
+      mean: 8.0709E-01
+      std: 1.0674E+00
+      rms: 1.3382E+00
+      log_mean: -9.6730E-01
+      log_std: 1.2613E+00
+      mean_delta: -7.5914E-04
+      std_delta: 2.7089E-01
+      rms_delta: 2.7089E-01
+    electron_fraction:
+      mean: 3.3712E-01
+      std: 8.8762E-02
+      rms: 3.4861E-01
+      log_mean: -1.1323E+00
+      log_std: 3.2568E-01
+      mean_delta: -1.9662E-04
+      std_delta: 1.5123E-02
+      rms_delta: 1.5124E-02
+    entropy:
+      mean: 4.3048E+02
+      std: 1.2452E+03
+      rms: 1.3174E+03
+      log_mean: 4.1303E+00
+      log_std: 1.7919E+00
+      mean_delta: -5.7222E+00
+      std_delta: 2.5108E+02
+      rms_delta: 2.5112E+02
+    magnetic_field:
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      rms_delta:
+      - 3.0179E-03
+      - 4.9183E-04
+      - 8.5400E-03
+      mean:
+      - 9.6023E-06
+      - -2.3360E-05
+      - -3.8436E-05
+      mean_delta:
+      - 5.2601E-08
+      - 1.3995E-07
+      - -9.7771E-08
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std:
+      - 3.7137E-03
+      - 3.9363E-04
+      - 9.7308E-03
+      rms:
+      - 3.7137E-03
+      - 3.9432E-04
+      - 9.7310E-03
+      std_delta:
+      - 3.0179E-03
+      - 4.9183E-04
+      - 8.5400E-03
+    velocity:
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      rms_delta:
+      - 3.2996E-02
+      - 7.1572E-03
+      - 4.0241E-02
+      mean:
+      - 4.1801E-02
+      - -3.4020E-04
+      - 7.1351E-02
+      mean_delta:
+      - -7.2536E-05
+      - -1.9975E-06
+      - -1.1048E-04
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std:
+      - 1.5633E-01
+      - 9.9067E-03
+      - 2.1713E-01
+      rms:
+      - 1.6182E-01
+      - 9.9127E-03
+      - 2.2855E-01
+      std_delta:
+      - 3.2996E-02
+      - 7.1572E-03
+      - 4.0241E-02

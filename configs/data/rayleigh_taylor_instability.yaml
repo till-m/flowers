@@ -1,0 +1,66 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: rayleigh_taylor_instability
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "At"
+      normalization: "log"
+
+  stats:
+    density:
+      mean: 7.7333E-01
+      std: 2.6871E-01
+      rms: 8.1901E-01
+      log_mean: -3.6106E-01
+      log_std: 5.3222E-01
+      mean_delta: -5.1788E-11
+      std_delta: 2.2925E-02
+      rms_delta: 2.2925E-02
+    velocity:
+      rms:
+      - 8.2248E-03
+      - 8.1854E-03
+      - 1.3937E-02
+      mean:
+      - -6.0035E-06
+      - -1.6880E-05
+      - -4.4674E-06
+      std_delta:
+      - 3.1898E-03
+      - 3.1908E-03
+      - 3.4334E-03
+      rms_delta:
+      - 3.1898E-03
+      - 3.1908E-03
+      - 3.4334E-03
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      mean_delta:
+      - -3.2711E-08
+      - -2.4829E-07
+      - -1.7763E-08
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std:
+      - 8.2248E-03
+      - 8.1853E-03
+      - 1.3937E-02
+    At:
+      mean: 3.3750E-01
+      std: 2.5495E-01
+      rms: 4.2297E-01
+      log_mean: -1.4438E+00
+      log_std: 9.0256E-01

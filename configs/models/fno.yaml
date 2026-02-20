@@ -1,0 +1,54 @@
+model:
+  _target_: flowers.models.fno.FNO
+  # dim_in and dim_out will be set automatically based on dataset metadata
+  # spatial_resolution will be set automatically based on dataset metadata
+  # n_spatial_dims will be set automatically based on dataset metadata
+  hidden_channels: 180
+  n_layers: 4
+
+# Optimizer configuration
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 0.001
+  weight_decay: 1.0e-2
+
+# Learning rate scheduler
+lr_scheduler:
+  _target_: the_well.benchmark.optim.schedulers.LinearWarmupCosineAnnealingLR
+  warmup_epochs: 5  # 5 epochs of warmup
+  # optimizer will be passed automatically by train script
+  # max_epochs will be passed automatically by train script
+  # warmup_start_lr and eta_min will be set to optimizer.lr * 0.1 by train script
+
+# Batch size mapping based on dataset name
+# Adjust based on available GPU memory
+batch_size_map:
+  # 2D datasets
+  "acoustic_scattering_maze": 100         # 256x256
+  "acoustic_scattering_discontinuous": 100 # 256x256
+  "acoustic_scattering_inclusions": 100    # 256x256
+  "active_matter": 90                     # 256x256
+  "euler_multi_quadrants_periodic": 27    # 512x512
+  "gray_scott_reaction_diffusion": 400    # 128x128
+  "helmholtz_staircase": 27               # 1024x256
+  "pdebench-2D_DarcyFlow": 400            # 128x128
+  "pdebench-diffusion_reaction": 400      # 128x128
+  "pdebench-shallow_water": 400           # 128x128
+  "planetswe": 50                         # 256x512
+  "rayleigh_benard": 100                  # 512x128
+  "rayleigh_benard_uniform": 100          # 512x128
+  "shear_flow": 47                        # 256x512
+  "turbulent_radiative_layer_2D": 115     # 128x384
+  "viscoelastic_instability": 27          # 512x512
+  "viscoelastic_instability_fixed": 27   # 512x512 (duplicates removed)
+  "wavebench-helmholtz_anisotropic": 400   # 128x128
+
+  # 3D datasets
+  "convective_envelope_rsg": 1  # 256x128x256
+  "MHD_64": 22  # 64x64x64
+  "post_neutron_star_merger": 3 # 192x128x66
+  "supernova_explosion_64": 22  # 64x64x64
+  "supernova_explosion_128": 2  # 128x128x128
+  "turbulence_gravity_cooling": 22  # 64x64x64
+  "rayleigh_taylor_instability": 2  # 128x128x128
+  "turbulent_radiative_layer_3D": 1  # 128x128x256

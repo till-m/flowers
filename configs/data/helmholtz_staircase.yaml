@@ -1,0 +1,48 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: helmholtz_staircase
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "omega"
+      normalization: "linear"
+
+  stats:
+    pressure_re:
+      mean: 7.4247E-05
+      std: 1.9963E-01
+      rms: 1.9963E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: 1.4051E-10
+      std_delta: 2.5599E-02
+      rms_delta: 2.5599E-02
+    pressure_im:
+      mean: 1.0586E-03
+      std: 1.9992E-01
+      rms: 1.9992E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+      mean_delta: 3.2560E-10
+      std_delta: 2.5599E-02
+      rms_delta: 2.5599E-02
+    mask:
+      mean: 6.4869E-02
+      std: 2.4629E-01
+      rms: 2.5469E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+    omega:
+      mean: 1.3987E+00
+      std: 7.7981E-01
+      rms: 1.6014E+00
+      log_mean: 3.6708E-02
+      log_std: 9.6695E-01

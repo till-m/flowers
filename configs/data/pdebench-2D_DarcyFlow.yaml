@@ -1,0 +1,31 @@
+data:
+  _target_: flowers.data.datamodule.NotWellDataModule
+  path: /path/to/datasets/PDEBench-well/2D_DarcyFlow
+  well_dataset_name: pdebench-2D_DarcyFlow # for experiment name purposes
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars: [] # no parameters
+
+  stats:
+    field_0:
+      mean: 3.3927E+00
+      std: 7.9861E+00
+      rms: 8.6768E+00
+      log_mean: -2.0745E+00
+      log_std: 3.2725E+00
+      mean_delta: 0.0000E+00
+      std_delta: 1.0000E+00
+      rms_delta: 1.0000E+00
+    permeability:
+      mean: 5.4169E-01
+      std: 4.4992E-01
+      rms: 7.0417E-01
+      log_mean: -1.1726E+00
+      log_std: 1.1511E+00

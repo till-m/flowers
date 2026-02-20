@@ -1,0 +1,38 @@
+model:
+  _target_: flowers.models.flower.Flower
+  # dim_in and dim_out will be set automatically based on dataset metadata
+  # spatial_resolution will be set automatically based on dataset metadata
+  # n_spatial_dims will be set automatically based on dataset metadata
+  lifting_dim: 320
+  n_levels: 4
+  num_heads: 80
+  groups: 40
+  dropout_rate: 0.0
+
+name: flower-medium
+
+# Optimizer configuration
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 2e-4 # approx 1/3 of the un-scaled model
+  weight_decay: 1.0e-2
+
+trainer:
+  _target_: flowers.trainer.Trainer
+  epochs: 40
+
+# Learning rate scheduler
+lr_scheduler:
+  _target_: the_well.benchmark.optim.schedulers.LinearWarmupCosineAnnealingLR
+  warmup_epochs: 5  # 5 epochs of warmup
+  # optimizer will be passed automatically by train script
+  # max_epochs will be passed automatically by train script
+  # warmup_start_lr and eta_min will be set to optimizer.lr * 0.1 by train script
+
+# Batch size mapping based on dataset name
+# Adjust based on available GPU memory
+batch_size_map:
+  "euler_multi_quadrants_periodicBC": 14
+  "supernova_explosion_128": 2
+  "viscoelastic_instability_fixed": 14    # 512x512 (duplicates removed)
+

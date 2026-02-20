@@ -1,0 +1,44 @@
+# Training configuration for 1-input 1-output time-stepping w/ simulation parameters given as `meta=`
+
+# This config contains optimizer, scheduler, trainer, and experiment settings
+# Data and model configs are loaded separately from configs/data/ and configs/models/
+
+data:
+  n_steps_input: 1 # inputs
+  n_steps_output: 1 # one output
+  max_rollout_steps: 20
+
+# Experiment configuration
+name: paper  # Model/experiment identifier
+experiment_name: fionet-patch-skip
+experiment_dir: /path/to/outputs  # Directory where experiment outputs will be saved
+wandb_project_name: flower
+validation_mode: false
+auto_resume: false  # Whether to automatically resume from previous run
+folder_override: ""  # Override experiment folder (empty = use default)
+checkpoint_override: ""  # Override checkpoint path (empty = use latest if exists)
+config_override: ""  # Override config file (empty = use current)
+
+# Data workers
+data_workers: 8
+
+# Trainer configuration
+trainer:
+  _target_: flowers.trainer.Trainer
+  epochs: 100
+  checkpoint_path: ""  # Will be set automatically by configure_experiment
+  # checkpoint_folder, artifact_folder, viz_folder will be set automatically by train script
+  # model, datamodule, optimizer, lr_scheduler, device will be passed automatically by train script
+  # is_distributed will be passed automatically by train script
+  formatter: "channels_first_default"  # Use channels-first format
+  loss_fn:
+    _target_: flowers.train.MSELossWell  # MSE loss wrapper that accepts metadata
+  checkpoint_frequency: 0  # Save checkpoint every N epochs
+  val_frequency: 1  # Validate every N epochs
+  rollout_val_frequency: 2  # Long rollout validation every N epochs
+  max_rollout_steps: 100  # Max timesteps for rollout validation
+  short_validation_length: 20  # Number of batches for quick validation
+  make_rollout_videos: false  # Don't create videos (speeds up training)
+  num_time_intervals: 1  # Number of time intervals for loss computation
+  enable_amp: false  # Automatic mixed precision (set to true for faster training on A100)
+  amp_type: "float16"

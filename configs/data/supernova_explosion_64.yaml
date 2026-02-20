@@ -1,0 +1,100 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: supernova_explosion_64
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars: []
+
+  stats:
+    density:
+      mean: 2.9236E-01
+      std: 7.5853E-01
+      rms: 8.1292E-01
+      log_mean: -2.5145E+00
+      log_std: 1.7809E+00
+      mean_delta: 6.5495E-05
+      std_delta: 6.5067E-02
+      rms_delta: 6.5067E-02
+    pressure:
+      mean: 5.8572E-02
+      std: 5.7891E+00
+      rms: 5.7896E+00
+      log_mean: -7.2816E+00
+      log_std: 1.8532E+00
+      mean_delta: 6.3258E-04
+      std_delta: 8.1212E+00
+      rms_delta: 8.1212E+00
+    temperature:
+      mean: 1.5703E+05
+      std: 1.8481E+06
+      rms: 1.8547E+06
+      log_mean: 3.8781E+00
+      log_std: 2.0118E+00
+      mean_delta: 4.2642E+03
+      std_delta: 4.7377E+05
+      rms_delta: 4.7380E+05
+    velocity:
+      mean_delta:
+      - -5.5719E-05
+      - 2.1411E-05
+      - 9.9220E-06
+      rms_delta:
+      - 1.0004E+00
+      - 1.0016E+00
+      - 1.0026E+00
+      std_delta:
+      - 1.0004E+00
+      - 1.0016E+00
+      - 1.0026E+00
+      rms:
+      - 1.3460E+00
+      - 1.3370E+00
+      - 1.3396E+00
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      mean:
+      - 5.0175E-03
+      - 4.7698E-03
+      - -1.7155E-04
+      std:
+      - 1.3460E+00
+      - 1.3370E+00
+      - 1.3396E+00
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+    Msun:
+      mean: 7.0811E-01
+      std: 4.2131E-01
+      rms: 8.2397E-01
+      log_mean: -7.4678E-01
+      log_std: 1.0779E+00
+    rho0:
+      mean: 4.4500E+01
+      std: 0.0000E+00
+      rms: 4.4500E+01
+      log_mean: 3.7955E+00
+      log_std: 0.0000E+00
+    Z:
+      mean: 1.0000E+00
+      std: 0.0000E+00
+      rms: 1.0000E+00
+      log_mean: 0.0000E+00
+      log_std: 0.0000E+00
+    T0:
+      mean: 1.0000E+02
+      std: 0.0000E+00
+      rms: 1.0000E+02
+      log_mean: 4.6052E+00
+      log_std: 0.0000E+00

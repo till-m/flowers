@@ -1,0 +1,76 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: euler_multi_quadrants_periodicBC
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "gamma"
+      normalization: "linear"
+  
+  stats:
+    energy:
+      mean: 3.0343E+00
+      std: 3.2551E+00
+      rms: 4.4501E+00
+      log_mean: 8.1588E-01
+      log_std: 7.2055E-01
+      mean_delta: 1.6917E-11
+      std_delta: 9.1395E-01
+      rms_delta: 9.1395E-01
+    density:
+      mean: 9.1360E-01
+      std: 5.3502E-01
+      rms: 1.0587E+00
+      log_mean: -2.2075E-01
+      log_std: 5.0085E-01
+      mean_delta: -2.5339E-12
+      std_delta: 1.9615E-01
+      rms_delta: 1.9615E-01
+    pressure:
+      mean: 9.2915E-01
+      std: 7.8239E-01
+      rms: 1.2147E+00
+      log_mean: -2.8027E-01
+      log_std: 6.0900E-01
+      mean_delta: 4.1260E-04
+      std_delta: 2.5045E-01
+      rms_delta: 2.5045E-01
+    momentum:
+      mean:
+      - 1.2451E-03
+      - 1.2451E-03
+      std:
+      - 4.1197E-01
+      - 4.1197E-01
+      rms:
+      - 4.1197E-01
+      - 4.1197E-01
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      mean_delta:
+      - 2.0604E-13
+      - 2.0604E-13
+      std_delta:
+      - 1.7376E-01
+      - 1.7376E-01
+      rms_delta:
+      - 1.7376E-01
+      - 1.7376E-01
+    gamma:
+      mean: 1.3959E+00
+      std: 1.7102E-01
+      rms: 1.4063E+00
+      log_mean: 3.2626E-01
+      log_std: 1.1986E-01

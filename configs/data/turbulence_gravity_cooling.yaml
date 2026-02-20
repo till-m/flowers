@@ -1,0 +1,102 @@
+data:
+  _target_: flowers.data.datamodule.WellDataModule
+  well_base_path: /path/to/datasets/the-well
+  well_dataset_name: turbulence_gravity_cooling
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars:
+    - name: "Z"
+      normalization: "linear"
+    # I think the following two parameters should not be given, because the information
+    # contained in them should also be in the temperature/pressure scalar fields
+    #- name: "T0" 
+    #  normalization: "log"
+    #- name: "rho0"
+    #  normalization: "log"
+
+  stats:
+    density:
+      mean: 2.5579E-01
+      std: 1.8115E+00
+      rms: 1.8294E+00
+      log_mean: -1.8020E+00
+      log_std: 9.8701E-01
+      mean_delta: -1.5926E-04
+      std_delta: 2.3914E+00
+      rms_delta: 2.3914E+00
+    pressure:
+      mean: 4.3332E-02
+      std: 5.7383E-02
+      rms: 7.1906E-02
+      log_mean: -4.2135E+00
+      log_std: 1.8035E+00
+      mean_delta: -2.5596E-04
+      std_delta: 1.8119E-02
+      rms_delta: 1.8121E-02
+    temperature:
+      mean: 3.8573E+02
+      std: 4.2589E+02
+      rms: 5.7460E+02
+      log_mean: 5.4031E+00
+      log_std: 1.1698E+00
+      mean_delta: 1.4229E+00
+      std_delta: 7.8506E+01
+      rms_delta: 7.8519E+01
+    velocity:
+      log_mean:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std:
+      - 5.0943E-01
+      - 5.0436E-01
+      - 5.0678E-01
+      mean:
+      - -3.2339E-03
+      - 1.2261E-03
+      - -1.9061E-03
+      mean_delta:
+      - -5.4113E-05
+      - -8.2540E-05
+      - -1.1979E-04
+      rms_delta:
+      - 7.3216E-02
+      - 7.2924E-02
+      - 7.3133E-02
+      rms:
+      - 5.0944E-01
+      - 5.0436E-01
+      - 5.0679E-01
+      log_std:
+      - !!float 'NAN'
+      - !!float 'NAN'
+      - !!float 'NAN'
+      std_delta:
+      - 7.3216E-02
+      - 7.2924E-02
+      - 7.3133E-02
+    rho0:
+      mean: 1.6465E+01
+      std: 1.9891E+01
+      rms: 2.5822E+01
+      log_mean: 1.4929E+00
+      log_std: 1.8801E+00
+    Z:
+      mean: 3.6667E-01
+      std: 4.4969E-01
+      rms: 5.8023E-01
+      log_mean: !!float 'NAN'
+      log_std: !!float 'NAN'
+    T0:
+      mean: 3.7000E+02
+      std: 4.4699E+02
+      rms: 5.8026E+02
+      log_mean: 4.6052E+00
+      log_std: 1.8801E+00

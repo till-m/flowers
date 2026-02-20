@@ -1,0 +1,25 @@
+data:
+  _target_: flowers.data.datamodule.NotWellDataModule
+  path: /path/to/datasets/PDEBench-well/2D_shallow_water
+  well_dataset_name: pdebench-shallow_water # for experiment name purposes
+
+  min_dt_stride: 1
+  max_dt_stride: 1
+  use_normalization: true
+  include_filters: []
+  exclude_filters: []
+  boundary_return_type: padding
+  transform: null
+
+  meta_scalars: [] # no parameters
+
+  stats:
+    height:
+      mean: 1.0327E+00
+      std: 1.1428E-01
+      rms: 1.0390E+00
+      log_mean: 2.6794E-02
+      log_std: 1.0090E-01
+      mean_delta: -2.1157E-12
+      std_delta: 7.8862E-03
+      rms_delta: 7.8862E-03

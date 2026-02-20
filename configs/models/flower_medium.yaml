@@ -1,0 +1,37 @@
+model:
+  _target_: flowers.models.flower.Flower
+  # dim_in and dim_out will be set automatically based on dataset metadata
+  # spatial_resolution will be set automatically based on dataset metadata
+  # n_spatial_dims will be set automatically based on dataset metadata
+  lifting_dim: 480
+  n_levels: 4
+  num_heads: 120
+  groups: 40
+  dropout_rate: 0.0
+
+name: flower-big
+
+# Optimizer configuration
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 1e-4 # approx 1/3 of the un-scaled model
+  weight_decay: 1.0e-2
+
+trainer:
+  _target_: flowers.trainer.Trainer
+  epochs: 40
+
+# Learning rate scheduler
+lr_scheduler:
+  _target_: the_well.benchmark.optim.schedulers.LinearWarmupCosineAnnealingLR
+  warmup_epochs: 5  # 5 epochs of warmup
+  # optimizer will be passed automatically by train script
+  # max_epochs will be passed automatically by train script
+  # warmup_start_lr and eta_min will be set to optimizer.lr * 0.1 by train script
+
+# Batch size mapping based on dataset name
+# Adjust based on available GPU memory
+batch_size_map:
+  "euler_multi_quadrants_periodicBC": 9     # 512x512 9 for 1 H200, 36 for 4 :)
+  "supernova_explosion_128": 1
+
