@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Flowers: A Warp Drive for Neural PDE Solvers">
+  <meta name="description" content="Flowers is a neural architecture for learning PDE solution operators built entirely from multihead warps — no Fourier layers, no attention — achieving state-of-the-art performance on 2D and 3D benchmarks.">
+  <meta name="keywords" content="neural PDE solver, learned warps, operator learning, scientific machine learning, fluid dynamics, wave propagation, Fourier Neural Operator, The Well">
+  <meta name="author" content="Till Muser, Alexandra Spitzer, Matti Lassas, Maarten V. de Hoop, Ivan Dokmanić">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="University of Basel — Signal and Image Processing Lab">
+  <meta property="og:title" content="Flowers: A Warp Drive for Neural PDE Solvers">
+  <meta property="og:description" content="Flowers is a neural architecture for learning PDE solution operators built entirely from multihead warps — no Fourier layers, no attention — achieving state-of-the-art performance on 2D and 3D benchmarks.">
+  <!-- TODO: Replace with your actual website URL once deployed -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/flowers">
+  <!-- TODO: Add a 1200x630px social preview image -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/figures/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Flowers: A Warp Drive for Neural PDE Solvers">
+  <meta property="article:published_time" content="2025-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Till Muser">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="neural PDE solver">
+  <meta property="article:tag" content="operator learning">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Flowers: A Warp Drive for Neural PDE Solvers">
+  <meta name="twitter:description" content="Neural PDE solvers built almost purely from learned coordinate warps. Outperforms FNOs, ConvNets, and attention-based models — even at foundation-model scale.">
+  <!-- TODO: Add social preview image -->
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/figures/social_preview.png">
+  <meta name="twitter:image:alt" content="Flowers: A Warp Drive for Neural PDE Solvers">
+
+  <!-- Academic / Google Scholar -->
+  <meta name="citation_title" content="Flowers: A Warp Drive for Neural PDE Solvers">
+  <meta name="citation_author" content="Muser, Till">
+  <meta name="citation_author" content="Spitzer, Alexandra">
+  <meta name="citation_author" content="Lassas, Matti">
+  <meta name="citation_author" content="de Hoop, Maarten V.">
+  <meta name="citation_author" content="Dokmanić, Ivan">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_conference_title" content="arXiv Preprint">
+  <!-- TODO: Add arXiv PDF URL once available -->
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/ARXIV_ID.pdf">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#106973">
+  <meta name="msapplication-TileColor" content="#106973">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>Flowers: A Warp Drive for Neural PDE Solvers</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicons/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="static/images/favicons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="static/images/favicons/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="static/images/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="static/images/favicons/site.webmanifest">
+
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  <script defer src="static/js/warp-data.js"></script>
+  <script defer src="static/js/warp-canvas.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Flowers: A Warp Drive for Neural PDE Solvers",
+    "description": "Flowers is a neural architecture for learning PDE solution operators built entirely from multihead warps. A compact 17M-parameter model consistently outperforms Fourier, convolution, and attention-based baselines, while a 150M-parameter variant improves over recent transformer-based foundation models.",
+    "author": [
+      { "@type": "Person", "name": "Till Muser",         "affiliation": { "@type": "Organization", "name": "University of Basel" } },
+      { "@type": "Person", "name": "Alexandra Spitzer",  "affiliation": { "@type": "Organization", "name": "University of Basel" } },
+      { "@type": "Person", "name": "Matti Lassas",       "affiliation": { "@type": "Organization", "name": "University of Helsinki" } },
+      { "@type": "Person", "name": "Maarten V. de Hoop", "affiliation": { "@type": "Organization", "name": "Rice University" } },
+      { "@type": "Person", "name": "Ivan Dokmanić",      "affiliation": { "@type": "Organization", "name": "University of Basel" } }
+    ],
+    "datePublished": "2025-01-01",
+    "publisher": { "@type": "Organization", "name": "arXiv Preprint" },
+    "keywords": ["neural PDE solver", "operator learning", "learned warps", "scientific machine learning", "fluid dynamics", "wave propagation"],
+    "isAccessibleForFree": true
+  }
+  </script>
+
+</head>
+<body>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <div class="banner-outer">
+              <div class="banner-wrapper">
+                <img class="banner-floral-top"
+                     src="static/images/design/floral-frame-top.png" alt="">
+                <div class="banner-frame">
+                  <img class="banner-floral-bottom"
+                       src="static/images/design/floral-frame-bottom.png" alt="">
+                  <h1 class="banner-title">Flowers</h1>
+                  <p class="banner-subtitle">A Warp Drive for Neural PDE Solvers</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="is-size-5 publication-authors" style="position:relative; z-index:1; margin-top:1.25rem">
+              <span class="author-block">
+                <a href="https://github.com/till-m" target="_blank">Till Muser</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://sada.dmi.unibas.ch/en/people/phd/alexandra-spitzer" target="_blank">Alexandra Spitzer</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://www.mv.helsinki.fi/home/lassas/" target="_blank">Matti Lassas</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://profiles.rice.edu/faculty/maarten-de-hoop" target="_blank">Maarten V. de Hoop</a><sup>3</sup>,</span>
+              <span class="author-block">
+                <a href="https://sada.dmi.unibas.ch/en/people/head-of-sada/ivan-dokmanic" target="_blank">Ivan Dokmanić</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-top:0.75rem; position:relative; z-index:1;">
+              <span class="author-block"><sup>1</sup>University of Basel &nbsp;&nbsp;</span>
+              <span class="author-block"><sup>2</sup>University of Helsinki &nbsp;&nbsp;</span>
+              <span class="author-block"><sup>3</sup>Rice University</span>
+            </div>
+
+            <div class="column has-text-centered" style="margin-top:1.5rem;">
+              <div class="publication-links">
+                <!-- TODO: Replace ARXIV_ID with the actual arXiv paper ID -->
+                <span class="link-block">
+                  <a href="https://www.researchgate.net/profile/Ivan-Dokmanic/publication/400979038_Flowers_A_Warp_Drive_for_Neural_PDE_Solvers/links/6998516612f837212a1c7471/Flowers-A-Warp-Drive-for-Neural-PDE-Solvers.pdf" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://github.com/till-m/flowers" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- TODO: Replace ARXIV_ID
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/ARXIV_ID" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span> -->
+              </div>
+            </div>
+
+            <div style="margin-top:1.5rem; max-width:1380px; margin-left:auto; margin-right:auto;">
+              <div class="tldr-box">
+                <span class="tldr-label">TL;DR</span>
+                <p>
+                  We propose a neural PDE solver built entirely from learned coordinate warps: no Fourier
+                  layers, no attention, (almost) no convolutions. Our compact 17M-parameter model consistently
+                  outperforms Fourier, convolutional, and attention-based baselines across all 16 tested
+                  benchmarks from <a href="https://polymathic-ai.org/the_well/" target="_blank">The Well</a>
+                  and PDEBench. Scaled to 150M parameters, it outperforms Poseidon-L (628M parameters,
+                  pretrained) on compressible Euler, training from scratch with 4× fewer parameters.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE WARP DEMO ==================== -->
+  <section class="section" style="padding-top:0; padding-bottom:2rem;">
+    <div class="container is-max-desktop">
+      <div style="position:relative; border-radius:10px; overflow:hidden; line-height:0; box-shadow:0 4px 32px rgba(0,0,0,0.22); margin-top: 2.1rem;">
+        <canvas id="warp-canvas" style="display:block; width:100%; cursor:crosshair;"></canvas>
+        <div id="warp-hint" style="
+          position:absolute; bottom:13px; right:17px;
+          font-size:0.72rem; color:rgba(0,0,0,0.38);
+          font-family:'Inter',sans-serif; pointer-events:none; user-select:none;
+          letter-spacing:0.06em; transition:opacity 1.4s ease;
+        ">move cursor &middot; reveal warp heads</div>
+      </div>
+      <p class="fig-caption">
+        <strong>Visualizing Flowers:</strong> To predict the next state of a PDE governed by conservation laws,
+        we must look "upstream" in the flow and move the quantity from there to the point of interest. We propose
+        a model that explicitly performs this action. Hover to reveal  learned warp directions for the first layer,
+        aggregated into 6 k-means clusters for visualization. Each arrow points from a grid location to where the
+        model looks to fetch a value.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== ABSTRACT ==================== -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce <strong>Flowers</strong>, a neural architecture for learning PDE solution
+              operators built entirely from multihead warps. Aside from pointwise channel mixing and
+              a multiscale scaffold, Flowers use no Fourier multipliers, no dot-product attention,
+              and no convolutional mixing. Each head predicts a displacement field and warps the
+              mixed input features. Motivated by physics and computational efficiency, displacements
+              are predicted pointwise, without any spatial aggregation, and nonlocality enters
+              <em>only</em> through sparse sampling at source coordinates, <em>one</em> per head.
+              Stacking warps in multiscale residual blocks yields Flowers, which implement adaptive,
+              global interactions at linear cost.
+            </p>
+            <p>
+              We theoretically motivate this design through three complementary lenses: flow maps for
+              conservation laws, waves in inhomogeneous media, and a kinetic-theoretic continuum limit.
+              Flowers achieve excellent performance on a broad suite of 2D and 3D time-dependent PDE
+              benchmarks, particularly flows and waves. A compact 17M-parameter model consistently
+              outperforms Fourier, convolution, and attention-based baselines of similar size, while a
+              150M-parameter variant improves over recent transformer-based foundation models with
+              much more parameters, data, and training compute.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RESULTS ==================== -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+
+      <figure class="result-figure" style="margin-bottom:2.5rem;">
+        <img src="static/figures/compare_models_viscoelastic_instability_fixed_ch1.svg"
+             alt="One-step prediction comparison on viscoelastic instability: ground truth vs FNO, CNUnet, scOT, Flower">
+        <p class="fig-caption">
+          <strong>Viscoelastic instability:</strong> one-step prediction of the conformation tensor entry
+          C<sub>zz</sub>. Top row: ground truth and model predictions. Bottom row: last input frame and
+          pointwise errors.
+        </p>
+      </figure>
+
+      <p class="section-intro has-text-justified">
+        We benchmark on 16 datasets drawn from
+        <a href="https://polymathic-ai.org/the_well/" target="_blank">The Well</a>
+        and <a href="https://github.com/pdebench/PDEBench" target="_blank">PDEBench</a>, covering fluid dynamics,
+        wave propagation, magnetohydrodynamics, 3D flows, and more.
+        Models are compared at roughly equal parameter count (15–20M):
+        FNO, a convolutional U-Net (CNUnet), an attention-based model (scOT), and Flower.
+        Flower achieves the best next-step prediction on every dataset and the best 1:20 rollout on
+        15 of 16.
+      </p>
+
+      <!-- ===== TABLE 1 ===== -->
+      <div class="results-table-wrapper">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th class="col-left" rowspan="2" style="border-right:1px solid var(--border-color);">Collection</th>
+              <th class="col-left" rowspan="2" style="border-right:2px solid var(--border-color);">Dataset</th>
+              <th colspan="4" style="border-right:2px solid var(--border-color); border-bottom:1px solid var(--border-color);">Next-step (VRMSE ↓)</th>
+              <th colspan="4">1:20 Rollout (VRMSE ↓)</th>
+            </tr>
+            <tr>
+              <th>FNO</th>
+              <th>CNUnet</th>
+              <th>scOT</th>
+              <th class="flower-col" style="border-right:2px solid var(--border-color);">Flower</th>
+              <th>FNO</th>
+              <th>CNUnet</th>
+              <th>scOT</th>
+              <th class="flower-col">Flower</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="collection col-left" rowspan="14" style="border-right:1px solid var(--border-color);">The Well</td>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">acoustic_scattering_maze</td>
+              <td>0.1454</td><td class="second">0.0129</td><td>0.0361</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0064</td>
+              <td>0.4197</td><td class="second">0.0874</td><td>0.1996</td><td class="best flower-col">0.0489</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">active_matter</td>
+              <td>0.1749</td><td class="second">0.0650</td><td>0.1050</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0249</td>
+              <td>3.2862</td><td class="second">1.7781</td><td>4.1055</td><td class="best flower-col">1.3905</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">gray_scott_reaction_diffusion</td>
+              <td>0.0372</td><td class="second">0.0188</td><td>0.0673</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0102</td>
+              <td>0.9125</td><td class="second">0.3059</td><td>0.4169</td><td class="best flower-col">0.2074</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">MHD_64</td>
+              <td>0.3403</td><td class="second">0.2062</td><td class="dash">—</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.1165</td>
+              <td>1.3007</td><td class="second">0.9534</td><td class="dash">—</td><td class="best flower-col">0.7580</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">planetswe</td>
+              <td>0.0070</td><td class="second">0.0027</td><td>0.0041</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0007</td>
+              <td>0.1316</td><td>0.0624</td><td class="second">0.0518</td><td class="best flower-col">0.0187</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">post_neutron_star_merger</td>
+              <td>0.4452</td><td class="second">0.3391</td><td class="dash">—</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.3269</td>
+              <td class="best">0.5980</td><td>0.6529</td><td class="dash">—</td><td class="second flower-col">0.6223</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">rayleigh_benard</td>
+              <td>0.2104</td><td>0.2171</td><td class="second">0.1863</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0807</td>
+              <td>39.038</td><td>12.507</td><td class="second">5.6486</td><td class="best flower-col">2.1661</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">rayleigh_taylor_instability</td>
+              <td>0.1714</td><td class="second">0.1351</td><td class="dash">—</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0491</td>
+              <td class="second">3.0057</td><td>5.3894</td><td class="dash">—</td><td class="best flower-col">0.5862</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">shear_flow</td>
+              <td>0.0769</td><td class="second">0.0594</td><td>0.1093</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0463</td>
+              <td>1.1245</td><td class="second">0.7632</td><td>0.8930</td><td class="best flower-col">0.2246</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">supernova_explosion</td>
+              <td>0.4326</td><td class="second">0.4316</td><td class="dash">—</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.2888</td>
+              <td class="second">1.0162</td><td>2.2913</td><td class="dash">—</td><td class="best flower-col">0.8113</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">turbulence_gravity_cooling</td>
+              <td>0.2720</td><td class="second">0.2113</td><td class="dash">—</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.1700</td>
+              <td>3.2583</td><td class="second">2.0510</td><td class="dash">—</td><td class="best flower-col">1.2636</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">turbulent_radiative_layer_2D</td>
+              <td>0.3250</td><td class="second">0.2559</td><td>0.3555</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.1930</td>
+              <td>1.2328</td><td class="second">0.7051</td><td>0.8299</td><td class="best flower-col">0.5491</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">turbulent_radiative_layer_3D</td>
+              <td class="second">0.3261</td><td>0.3322</td><td class="dash">—</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.2073</td>
+              <td>0.9203</td><td class="second">0.7139</td><td class="dash">—</td><td class="best flower-col">0.6840</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">viscoelastic_instability<sup>†</sup></td>
+              <td>0.1914</td><td class="second">0.1623</td><td>0.2017</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0624</td>
+              <td>0.4284</td><td class="second">0.3592</td><td>0.4890</td><td class="best flower-col">0.3465</td>
+            </tr>
+            <tr class="divider">
+              <td class="collection col-left" rowspan="2" style="border-right:1px solid var(--border-color);">PDEBench</td>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">Diffusion-Reaction</td>
+              <td>0.0191</td><td class="second">0.0033</td><td>0.0150</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0015</td>
+              <td>0.7563</td><td class="second">0.0279</td><td>0.0949</td><td class="best flower-col">0.0241</td>
+            </tr>
+            <tr>
+              <td class="dataset col-left" style="border-right:2px solid var(--border-color);">Shallow Water</td>
+              <td class="second">0.0019</td><td>0.0044</td><td>0.0187</td>
+              <td class="best flower-col" style="border-right:2px solid var(--border-color);">0.0010</td>
+              <td>0.2499</td><td>0.1427</td><td class="second">0.1164</td><td class="best flower-col">0.0076</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-caption">
+        <strong>Table 1.</strong> VRMSE for unconditioned 4→1 next-step prediction and 1:20 autoregressive rollout.
+        <strong>Bold</strong> = best, <span style="color:#3a7a00;font-weight:600;">green</span> = second best.
+        <sup>†</sup>Using a fixed <code>viscoelastic_instability</code> dataset; see
+        <a href="https://github.com/PolymathicAI/the_well/issues/74" target="_blank">this GitHub issue</a> for details.
+      </p>
+
+      <!-- ===== QUALITATIVE RESULTS ===== -->
+
+      <figure class="result-figure" style="margin-bottom:2.5rem;">
+        <video autoplay controls muted loop preload="metadata" style="border-radius:8px; width:100%;">
+          <source src="https://sada.dmi.unibas.ch/download/169/shear_flow.mp4" type="video/mp4">
+        </video>
+        <p class="fig-caption">
+          <strong>Shear flow: autoregressive rollout.</strong>
+          Comparison of autoregressive rollout model predictions on the shear flow dataset (4→1 unconditioned setting),
+          showing the tracer field. 
+        </p>
+      </figure>
+
+      <figure class="result-figure" style="margin-bottom:2.5rem;">
+        <video autoplay controls muted loop preload="metadata" style="border-radius:8px; width:100%;">
+          <source src="https://sada.dmi.unibas.ch/download/167/acoustic_scattering_maze_error.mp4" type="video/mp4">
+        </video>
+        <p class="fig-caption">
+          <strong>Acoustic scattering in a maze: autoregressive rollout.</strong>
+          Waves propagate through a complex maze geometry with hard reflecting walls.
+          The difficulty lies in learning how pressure waves scatter, reflect, and diffract around
+          obstacles.
+        </p>
+      </figure>
+
+      <figure class="result-figure" style="margin-bottom:2.5rem;">
+        <img src="static/figures/compare_models_rayleigh_taylor_instability_ch0_3D.svg"
+             alt="3D Rayleigh-Taylor instability: one-step prediction comparison">
+        <p class="fig-caption">
+          <strong>3D Rayleigh–Taylor instability:</strong> 10-step autoregressive prediction of density.
+          Because displacements are predicted pointwise, Flower scales naturally to 3D with
+          cost that is linear in the number of grid points. Rendered using
+          <a href="https://github.com/KeKsBoTer/vape4d" target="_blank">vape4d</a>.
+        </p>
+      </figure>
+
+      <h3 class="subsection-heading">Interpretability</h3>
+      Without any explicit supervision on flow direction, the warp field aligns with the
+      underlying fluid velocity: the model learns to look upstream along characteristics,
+      exactly as conservation law theory would suggest.
+                      
+      <figure class="interpret-figure" style="margin-bottom:1rem;">
+        <img src="static/figures/warpfield_overlay_shear_flow_head0.svg"
+             alt="Learned displacement field (arrows) overlaid on shear flow tracer">
+        <p class="fig-caption">
+          <strong>Learned displacement fields on shear flow.</strong>
+          The black arrows show the displacement field predicted by the first head of the first
+          downsampling block, overlaid on the tracer field.
+        </p>
+      </figure>
+      <p class="section-intro has-text-justified">
+      </p>
+
+
+    </div>
+  </section>
+
+  <!-- ==================== THROUGHPUT ==================== -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Throughput</h2>
+      <p class="section-intro has-text-justified">
+        Accuracy improvements would be of limited use if they came at significant compute cost.
+        Flower matches the throughput of FNO and scOT across resolutions, while
+        substantially outperforming CNUnet, especially in 3D, where pointwise displacement
+        prediction gives Flower a natural efficiency advantage.
+      </p>
+      <figure class="result-figure">
+        <img src="static/figures/throughput_by_resolution.svg"
+             alt="Model throughput (samples/sec) vs. resolution for 2D and 3D problems">
+        <p class="fig-caption">
+          <strong>Training throughput (samples/sec) across resolutions</strong> for 2D and 3D problems,
+          measured during the benchmark runs of Table 1. Error bars indicate standard deviation across
+          datasets. Flower scales to high resolution and 3D at linear cost in grid points.
+        </p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ==================== SCALING ==================== -->
+  <section class="section ">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Scaling</h2>
+      <p class="section-intro has-text-justified">
+        We scale Flower from 17M to 156M parameters on the compressible Euler equations dataset and
+        compare against Poseidon-L, a 628M-parameter fo undation model pretrained on diverse
+        fluid-dynamics. We chose Poseidon-L for comparison because it is the best-performing foundation
+        model on this dataset, according to Table 1 of
+        <a rel="license" href="https://arxiv.org/abs/2511.15684" target="_blank">Walrus</a>.
+        All Flower variants are trained from scratch. Performance improves smoothly with model size.
+      </p>
+
+      <div class="columns is-centered">
+        <div class="column is-three-quarters">
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Parameters</th>
+                  <th>1-Step ↓</th>
+                  <th>1:20 Rollout ↓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Flower-Tiny</td>
+                  <td>17.3M</td>
+                  <td>0.0160</td>
+                  <td>0.1114</td>
+                </tr>
+                <tr>
+                  <td>Flower-Small</td>
+                  <td>69.3M</td>
+                  <td>0.0124</td>
+                  <td>0.0850</td>
+                </tr>
+                <tr>
+                  <td>Flower-Medium</td>
+                  <td>155.8M</td>
+                  <td class="best">0.0108</td>
+                  <td class="best">0.0739</td>
+                </tr>
+                <tr class="divider">
+                  <td style="color:var(--text-secondary);">Poseidon-L (pretrained)</td>
+                  <td style="color:var(--text-secondary);">628.6M</td>
+                  <td style="color:var(--text-secondary);">0.0194</td>
+                  <td style="color:var(--text-secondary);">0.1114</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-caption">
+            Compressible Euler equations (VRMSE ↓). Poseidon-L is a pretrained foundation model;
+            all Flower variants are trained from scratch on this single dataset.
+            Even Flower-Tiny matches Poseidon-L on the 1:20 rollout.
+          </p>
+        </div>
+      </div>
+
+      <figure class="result-figure" style="margin-bottom:2.5rem;">
+        <video autoplay controls muted loop preload="metadata" style="border-radius:8px; width:100%;">
+          <source src="https://sada.dmi.unibas.ch/download/168/euler_multi_quadrants_periodicBC.mp4" type="video/mp4">
+        </video>
+        <p class="fig-caption">
+          <strong>Compressible Euler (periodic BC): extended autoregressive rollout.</strong>
+          Flower-Medium (156M parameters) outperforms Poseidon-L (628M parameters, pretrained) with
+          4× fewer parameters and no cross-dataset pretraining.
+        </p>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ==================== ABLATIONS ==================== -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Ablations</h2>
+      <p class="section-intro has-text-justified">
+        We ablate key components of Flower on the viscoelastic instability dataset.
+        The central finding: warping is non-negotiable. Removing it entirely leaves a U-Net backbone
+        without any adaptive spatial interaction, causing a dramatic collapse.
+        A single warp head recovers much of the one-step gain (consistent with the theory),
+        but multiple heads are critical for stable long-horizon rollouts.
+      </p>
+
+      <div class="columns is-centered">
+        <div class="column is-three-quarters">
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Model Variant</th>
+                  <th>1-Step ↓</th>
+                  <th>1:20 Rollout ↓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>without warping</td>
+                  <td>0.4974</td>
+                  <td>0.6911</td>
+                </tr>
+                <tr>
+                  <td>single-head warping</td>
+                  <td>0.1241</td>
+                  <td>0.6719</td>
+                </tr>
+                <tr>
+                  <td>without coordinate encoding</td>
+                  <td>0.0638</td>
+                  <td>0.4065</td>
+                </tr>
+                <tr>
+                  <td>Calculate flow with a single conv (no MLP)</td>
+                  <td>0.0834</td>
+                  <td>0.3998</td>
+                </tr>
+                <tr>
+                  <td>without Identity Projection</td>
+                  <td>0.0712</td>
+                  <td>0.3816</td>
+                </tr>
+                <tr>
+                  <td>without GroupNorm</td>
+                  <td class="best">0.0622</td>
+                  <td class="second">0.3760</td>
+                </tr>
+                <tr>
+                  <td><strong>Full Model</strong></td>
+                  <td class="second">0.0624</td>
+                  <td class="best">0.3465</td>
+                </tr>
+                <tr class="divider">
+                  <td style="color:var(--text-secondary);">vs. CNUnet (baseline)</td>
+                  <td style="color:var(--text-secondary);">0.1623</td>
+                  <td style="color:var(--text-secondary);">0.3592</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-caption">
+            Ablation on the viscoelastic instability dataset (VRMSE ↓), sorted by 1:20 rollout loss.
+            <strong>Bold</strong> = best, <span style="color:#3a7a00;font-weight:600;">green</span> = second best.
+            CNUnet included for reference.
+          </p>
+        </div>
+      </div>
+
+      <figure class="result-figure">
+        <div class="ablation-pan-wrapper">
+          <video autoplay muted loop preload="metadata" class="ablation-pan-video">
+            <source src="https://sada.dmi.unibas.ch/download/170/viscoelastic_instability_fixed-rollout-ablation.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="fig-caption">
+          <strong>Ablation study: viscoelastic instability rollout.</strong>
+          Visual comparison across model variants. Without warping or with only a single head,
+          predictions quickly diverge over extended rollouts; the full multi-head model remains
+          accurate.
+        </p>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ==================== BIBTEX ==================== -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <!--
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>-->
+      </div>
+        Will be added as soon as arXiv releases the pre-print!
+      <!--
+      <pre id="bibtex-code"><code>@inproceedings{muser2026flowers,
+  title     = {Flowers: A Warp Drive for Neural {PDE} Solvers},
+  author    = {Muser, Till and Spitzer, Alexandra and Lassas, Matti
+               and de Hoop, Maarten V. and Dokmanić, Ivan},
+  journal   = {arXiv Preprint},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/ARXIV_ID}
+}</code></pre>
+    </div>
+    -->
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>
+              which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              This website is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+                Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
