@@ -131,7 +131,7 @@
   <main id="main-content">
 
   <!-- ==================== HERO ==================== -->
-  <section class="hero is-light">
+  <section class="hero is-light" id="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -220,7 +220,7 @@
   </section>
 
   <!-- ==================== INTERACTIVE WARP DEMO ==================== -->
-  <section class="section" style="padding-top:0; padding-bottom:2rem;">
+  <section class="section" id="demo" style="padding-top:0; padding-bottom:2rem;">
     <div class="container is-max-desktop">
       <div style="position:relative; border-radius:10px; overflow:hidden; line-height:0; box-shadow:0 4px 32px rgba(0,0,0,0.22); margin-top: 2.1rem;">
         <canvas id="warp-canvas" style="display:block; width:100%; cursor:crosshair;"></canvas>
@@ -242,11 +242,11 @@
   </section>
 
   <!-- ==================== ABSTRACT ==================== -->
-  <section class="section hero is-light">
+  <section class="section hero is-light" id="abstract">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
+          <h2 class="title is-3"><span class="section-title-wrap"><a href="#abstract" class="section-anchor" aria-label="Link to Abstract">#</a>Abstract</span></h2>
           <div class="content has-text-justified">
             <p>
               We introduce <strong>Flowers</strong>, a neural architecture for learning PDE solution
@@ -275,9 +275,9 @@
   </section>
 
   <!-- ==================== RESULTS ==================== -->
-  <section class="section">
+  <section class="section" id="results">
     <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Results</h2>
+      <h2 class="title is-3 has-text-centered"><span class="section-title-wrap"><a href="#results" class="section-anchor" aria-label="Link to Results">#</a>Results</span></h2>
 
       <figure class="result-figure" style="margin-bottom:2.5rem;">
         <img src="static/figures/compare_models_viscoelastic_instability_fixed_ch1.svg"
@@ -488,9 +488,9 @@
   </section>
 
   <!-- ==================== THROUGHPUT ==================== -->
-  <section class="section hero is-light">
+  <section class="section hero is-light" id="throughput">
     <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Throughput</h2>
+      <h2 class="title is-3 has-text-centered"><span class="section-title-wrap"><a href="#throughput" class="section-anchor" aria-label="Link to Throughput">#</a>Throughput</span></h2>
       <p class="section-intro has-text-justified">
         Accuracy improvements would be of limited use if they came at significant compute cost.
         Flower matches the throughput of FNO and scOT across resolutions, while
@@ -510,9 +510,9 @@
   </section>
 
   <!-- ==================== SCALING ==================== -->
-  <section class="section ">
+  <section class="section" id="scaling">
     <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Scaling</h2>
+      <h2 class="title is-3 has-text-centered"><span class="section-title-wrap"><a href="#scaling" class="section-anchor" aria-label="Link to Scaling">#</a>Scaling</span></h2>
       <p class="section-intro has-text-justified">
         We scale Flower from 17M to 156M parameters on the compressible Euler equations dataset and
         compare against Poseidon-L, a 628M-parameter fo undation model pretrained on diverse
@@ -585,9 +585,9 @@
   </section>
 
   <!-- ==================== ABLATIONS ==================== -->
-  <section class="section">
+  <section class="section" id="ablations">
     <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Ablations</h2>
+      <h2 class="title is-3 has-text-centered"><span class="section-title-wrap"><a href="#ablations" class="section-anchor" aria-label="Link to Ablations">#</a>Ablations</span></h2>
       <p class="section-intro has-text-justified">
         We ablate key components of Flower on the viscoelastic instability dataset.
         The central finding: warping is non-negotiable. Removing it entirely leaves a U-Net backbone
@@ -680,7 +680,7 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
+        <h2 class="title"><span class="section-title-wrap"><a href="#BibTeX" class="section-anchor" aria-label="Link to BibTeX">#</a>BibTeX</span></h2>
         <!--
         <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
           <i class="fas fa-copy"></i>

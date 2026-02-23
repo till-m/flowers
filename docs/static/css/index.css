@@ -1018,6 +1018,32 @@ a:focus {
   to   { transform: translateX(-44%); }
 }
 
+/* ==================== SECTION ANCHOR LINKS ==================== */
+.section-title-wrap {
+  position: relative;
+  display: inline;
+}
+.section-anchor {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: 0.3em;
+  font-weight: 400;
+  color: var(--text-light);
+  text-decoration: none !important;
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.title:hover .section-anchor,
+.section-anchor:focus {
+  opacity: 1;
+}
+.section-anchor:hover {
+  color: var(--primary-color) !important;
+}
+
 /* ==================== SUBSECTION HEADINGS ==================== */
 .subsection-heading {
   font-size: 1.15rem;
